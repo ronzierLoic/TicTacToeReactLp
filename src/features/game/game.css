@@ -1,0 +1,108 @@
+.game {
+  display: flex;
+  flex-direction: row;
+  margin-left: 675px;
+}
+.game-info {
+  margin-left: 30px;
+}
+
+.game-status {
+  font-size: 30px;
+}
+
+.game-content-win {
+  margin-left: 780px;
+}
+
+.game-content-nul {
+  margin-left: 750px;
+}
+
+.game-result {
+  color: red;
+  font-size: 90px;
+}
+
+.game-restart {
+  margin-left: 120px;
+  width: 150px;
+  height: 50px;
+}
+
+.game-restart-nul {
+  margin-left: 160px;
+  width: 150px;
+  height: 50px;
+}
+
+.game-prec {
+  width: 150px;
+  height: 50px;
+  color: black;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: gray;
+  line-height: 50px;
+  margin-right: 20px;
+}
+
+.game-prec-vide {
+  width: 150px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.game-next-vide {
+  width: 150px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.game-next {
+  width: 150px;
+  height: 50px;
+  color: black;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: gray;
+  line-height: 50px;
+  margin-right: 20px;
+}
+.game-next:focus {
+  outline: none;
+}
+
+.game-prec:focus {
+  outline: none;
+}
+
+.game-num {
+  padding-top: 10px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.game-pad {
+  margin-left: 680px;
+  height: 50px;
+  width: 600px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.back {
+  width: 150px;
+  height: 50px;
+  color: black;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: gray;
+  line-height: 50px;
+}
