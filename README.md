@@ -1,13 +1,13 @@
 # TicTacToeReactLp
----
-## Installation des modules
+
+### Installation des modules
 
 Si c'est la première fois que vous lancer le projet vous devez exécuter cette commande :
 
-### `npm install`
+#### `npm install`
 ---
-## Lancer le serveur
+### Lancer le serveur
 
 Afin de pouvoir accèder au site il faut lancer la commande :
 
-### `npm start`
+#### `npm start`
