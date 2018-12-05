@@ -13,17 +13,30 @@ class Game extends Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      player1: "X",
+      player2: "0",
+      scorePlayer1: 0,
+      scorePlayer2: 0
     };
+    if (this.props.location.param1) {
+      this.state.player1 =
+        this.props.location.param1.namePlayer1 !== ""
+          ? this.props.location.param1.namePlayer1 + " - X"
+          : "X";
+      this.state.player2 =
+        this.props.location.param1.namePlayer2 !== ""
+          ? this.props.location.param1.namePlayer2 + " - O"
+          : "O";
+    }
   }
 
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const winner = this.calculateWinner(current.squares);
     const currentStep = this.state.stepNumber;
     const maxStep = history.length;
-
     const moves = history.map((step, move) => {
       const desc = move ? "Go to move #" + move : "Go to game start";
       return (
@@ -37,18 +50,21 @@ class Game extends Component {
     let showWinner;
     if (winner !== "nul" && winner !== undefined) {
       status = "Game Finish";
-      showWinner = "Winner: " + winner;
+      showWinner =
+        "Winner: " + (winner === "X" ? this.state.player1 : this.state.player2);
     } else if (winner === "nul") {
       status = "Game Finish";
       showWinner = "Match Nul !";
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status =
+        "Next player: " +
+        (this.state.xIsNext ? this.state.player1 : this.state.player2);
       showWinner = "";
     }
     return (
       <div>
         <Link className="back" to="/" href="/">
-          Back
+          MENU
         </Link>
         <div className="game-pad">
           {currentStep - 1 >= 0 ? (
@@ -56,20 +72,20 @@ class Game extends Component {
               className="game-prec"
               onClick={() => this.jumpTo(currentStep - 1)}
             >
-              Précedent
+              Previous
             </button>
           ) : (
             <div className="game-prec-vide" />
           )}
           <div className="game-num">
-            move numéro : {currentStep}/{maxStep - 1}
+            move number : {currentStep}/{maxStep - 1}
           </div>
           {currentStep + 1 <= maxStep - 1 ? (
             <button
               className="game-next"
               onClick={() => this.jumpTo(currentStep + 1)}
             >
-              Suivant
+              Next
             </button>
           ) : (
             <div className="game-next-vide" />
@@ -84,6 +100,23 @@ class Game extends Component {
           </div>
           <div className="game-info">
             <div className="game-status">{status}</div>
+            <br />
+            <div>
+              <label className="game-status">Score:</label>
+              <br />
+              <br />
+
+              <div>
+                <label>{this.state.player1} : </label>
+                {this.state.scorePlayer1}
+              </div>
+              <div>
+                <label>{this.state.player2} : </label>
+                {this.state.scorePlayer2}
+              </div>
+            </div>
+            <br />
+
             <ol>{moves}</ol>
           </div>
         </div>
@@ -114,7 +147,7 @@ class Game extends Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? "X" : "O";
@@ -137,6 +170,16 @@ class Game extends Component {
   }
 
   reset = () => {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = this.calculateWinner(current.squares);
+    let scorePlayer1 = this.state.scorePlayer1;
+    let scorePlayer2 = this.state.scorePlayer2;
+    if (winner === "X") {
+      scorePlayer1++;
+    } else if(winner === "O"){
+      scorePlayer2++;
+    }
     this.setState({
       history: [
         {
@@ -144,40 +187,45 @@ class Game extends Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      scorePlayer1: scorePlayer1,
+      scorePlayer2: scorePlayer2
     });
   };
-}
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  let matchNul = true;
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+  calculateWinner = squares => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+    let matchNul = true;
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a];
+      }
     }
-  }
-  for (let i = 0; i < squares.length; i++) {
-    if (squares[i] === null) {
-      matchNul = false;
-      return;
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i] === null) {
+        matchNul = false;
+        return;
+      }
     }
-  }
 
-  if (matchNul === true) {
-    return "nul";
-  }
-  return null;
+    if (matchNul === true) {
+      return "nul";
+    }
+    return null;
+  };
 }
-
 export { Game };

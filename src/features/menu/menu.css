@@ -20,3 +20,17 @@
   font-size: 50px;
   text-align: center;
 }
+
+.menu-button:hover {
+  width: 500px;
+  height: 200px;
+  font-size: 100px;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color:  rgb(49, 49, 49);
+  line-height: 200px;
+}

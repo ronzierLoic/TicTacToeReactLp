@@ -12,7 +12,7 @@
 }
 
 .game-content-win {
-  margin-left: 780px;
+  text-align: center;
 }
 
 .game-content-nul {
@@ -25,7 +25,6 @@
 }
 
 .game-restart {
-  margin-left: 120px;
   width: 150px;
   height: 50px;
 }
@@ -45,6 +44,19 @@
   text-decoration: none;
   display: inline-block;
   background-color: gray;
+  line-height: 50px;
+  margin-right: 20px;
+}
+
+.game-prec:hover {
+  width: 150px;
+  height: 50px;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color:  rgb(49, 49, 49);
   line-height: 50px;
   margin-right: 20px;
 }
@@ -73,6 +85,20 @@
   line-height: 50px;
   margin-right: 20px;
 }
+
+.game-next:hover {
+  width: 150px;
+  height: 50px;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color:  rgb(49, 49, 49);
+  line-height: 50px;
+  margin-right: 20px;
+}
+
 .game-next:focus {
   outline: none;
 }
@@ -104,5 +130,17 @@
   text-decoration: none;
   display: inline-block;
   background-color: gray;
+  line-height: 50px;
+}
+
+.back {
+  width: 150px;
+  height: 50px;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color:  rgb(49, 49, 49);
   line-height: 50px;
 }
