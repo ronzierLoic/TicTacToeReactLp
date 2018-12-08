@@ -11,3 +11,5 @@ Si c'est la première fois que vous lancer le projet vous devez exécuter cette 
 Afin de pouvoir accèder au site il faut lancer la commande :
 
 #### `npm start`
+
+puis allez sur http://localhost:5000
